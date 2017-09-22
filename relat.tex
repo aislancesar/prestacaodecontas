@@ -1,0 +1,369 @@
+
+  % 1. a identificação do projeto;
+  % 2. a introdução;
+  % 3. as atividades desenvolvidas;
+  % 4. os resultados obtidos; e
+  % 5. as considerações finais.
+
+%% abtex2-modelo-relatorio-tecnico.tex, v-1.9.6 laurocesar
+%% Copyright 2012-2016 by abnTeX2 group at http://www.abntex.net.br/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://www.abntex.net.br/
+%%
+%% This work consists of the files abntex2-modelo-relatorio-tecnico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Relatório Técnico/Acadêmico em conformidade com 
+% ABNT NBR 10719:2015 Informação e documentação - Relatório técnico e/ou
+% científico - Apresentação
+% ------------------------------------------------------------------------ 
+% ------------------------------------------------------------------------
+
+\documentclass[
+  % -- opções da classe memoir --
+  12pt,       % tamanho da fonte
+  % openright,      % capítulos começam em pág ímpar (insere página vazia caso preciso)
+  % twoside,      % para impressão em recto e verso. Oposto a oneside
+  oneside,
+  a4paper,      % tamanho do papel. 
+  % -- opções da classe abntex2 --
+  %chapter=TITLE,   % títulos de capítulos convertidos em letras maiúsculas
+  %section=TITLE,   % títulos de seções convertidos em letras maiúsculas
+  %subsection=TITLE,  % títulos de subseções convertidos em letras maiúsculas
+  %subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+  % -- opções do pacote babel --
+  english,      % idioma adicional para hifenização
+  french,       % idioma adicional para hifenização
+  spanish,      % idioma adicional para hifenização
+  brazil,       % o último idioma é o principal do documento
+  ]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}      % Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}    % Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}   % Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}    % Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}        % Controle das cores
+\usepackage{graphicx}     % Inclusão de gráficos
+\usepackage{microtype}      % para melhorias de justificação
+% ---
+
+% ---
+% Pacotes adicionais, usados no anexo do modelo de folha de identificação
+% ---
+\usepackage{multicol}
+\usepackage{multirow}
+% ---
+  
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}       % para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}   % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite} % Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+  \ifcase #1 %
+    Nenhuma citação no texto.%
+  \or
+    Citado na página #2.%
+  \else
+    Citado #1 vezes nas páginas #2.%
+  \fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Filtro de Partículas Aplicado à\\Localização de Robôs Móveis\\no Domínio da RoboCup Humanoide}
+\autor{Aislan Cesar de Almeida}
+\local{São Bernardo do Campo - SP}
+\data{Outubro 2017}
+\instituicao{%
+  Centro Universitário da
+  \par
+  Fundação Educacional Inaciana Pe. Sabóia de Medeiros - FEI
+  \par
+  Programa de Pós-Graduação em Engenharia Elétrica
+  \par
+  Departamento de Inteligência Artificial Aplicada à Automação.}
+\tipotrabalho{Relatório de Atividades}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Relatório das atividades desenvolvidas durante o período em que o autor foi bolsista do Conselho Nacional de Desenvolvimento Científico e Tecnológico com o objetivo de obter o título de Mestre de Ciência.}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+      %pagebackref=true,
+    pdftitle={\@title}, 
+    pdfauthor={\@author},
+      pdfsubject={\imprimirpreambulo},
+      pdfcreator={LaTeX with abnTeX2},
+    pdfkeywords={abnt}{latex}{abntex}{abntex2}{relatório técnico}, 
+    colorlinks=true,          % false: boxed links; true: colored links
+      linkcolor=blue,           % color of internal links
+      citecolor=blue,           % color of links to bibliography
+      filecolor=magenta,          % color of file links
+    urlcolor=blue,
+    bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Anverso da folha de rosto:
+% ---
+
+% {
+% \ABNTEXchapterfont
+
+% \vspace*{\fill}
+
+% Conforme a ABNT NBR 10719:2015, seção 4.2.1.1.1, o anverso da folha de rosto
+% deve conter:
+
+% \begin{alineas}
+%   \item nome do órgão ou entidade responsável que solicitou ou gerou o
+%    relatório; 
+%   \item título do projeto, programa ou plano que o relatório está relacionado;
+%   \item título do relatório;
+%   \item subtítulo, se houver, deve ser precedido de dois pontos, evidenciando a
+%    sua subordinação ao título. O relatório em vários volumes deve ter um título
+%    geral. Além deste, cada volume pode ter um título específico; 
+%   \item número do volume, se houver mais de um, deve constar em cada folha de
+%    rosto a especificação do respectivo volume, em algarismo arábico; 
+%   \item código de identificação, se houver, recomenda-se que seja formado
+%    pela sigla da instituição, indicação da categoria do relatório, data,
+%    indicação do assunto e número sequencial do relatório na série; 
+%   \item classificação de segurança. Todos os órgãos, privados ou públicos, que
+%    desenvolvam pesquisa de interesse nacional de conteúdo sigiloso, devem
+%     informar a classificação adequada, conforme a legislação em vigor; 
+%   \item nome do autor ou autor-entidade. O título e a qualificação ou a função
+%    do autor podem ser incluídos, pois servem para indicar sua autoridade no
+%    assunto. Caso a instituição que solicitou o relatório seja a mesma que o
+%    gerou, suprime-se o nome da instituição no campo de autoria; 
+%   \item local (cidade) da instituição responsável e/ou solicitante; NOTA: No
+%    caso de cidades homônimas, recomenda-se o acréscimo da sigla da unidade da
+%    federação.
+%   \item ano de publicação, de acordo com o calendário universal (gregoriano),
+%   deve ser apresentado em algarismos arábicos.
+% \end{alineas}
+
+% \vspace*{\fill}
+% }
+
+% ---
+% Agradecimentos
+% ---
+% \begin{agradecimentos}
+% O agradecimento principal é direcionado a Youssef Cherem, autor do
+% \nameref{formulado-identificacao} (\autopageref{formulado-identificacao}).
+
+% Os agradecimentos especiais são direcionados ao Centro de Pesquisa em
+% Arquitetura da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de
+% Brasília (CPAI), ao grupo de usuários
+% \emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos
+% novos voluntários do grupo
+% \emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e
+% \url{http://www.abntex.net.br/}}~que contribuíram e que ainda
+% contribuirão para a evolução do abn\TeX.
+
+% \end{agradecimentos}
+% ---
+
+% ---
+% RESUMO
+% ---
+
+% resumo na língua vernácula (obrigatório)
+\setlength{\absparsep}{10pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+  Este relatório apresenta as atividades desempenhadas pelo autor durante a vigência da bolsa auxílio do programa de mestrado, concedida pelo Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq).
+  Esse relatório se faz necessário por determinação do próprio CNPq, para concluir a vigência do contrato de bolsa.
+  A principal atividade realizada neste período foi a obtenção do título de mestre pelo autor.
+
+  O objetivo do mestrado foi implementar um sistema de localização em robôs humanoides autônomos.
+  Para que robôs humanoides possam jogar futebol competitivamente de maneira autônoma é necessário que os robôs conheçam suas posições no campo, essa informação é essencial para o desenvolvimento de estratégias.
+  A posição pode ser estimada a partir do conhecimento de como o robô se move pelo domínio e por observações feitas pelo próprio robô.
+  Mas isso não é uma tarefa trivial.
+  Os movimentos executados pelos robôs são imprecisos, além de problemas não modeláveis que surgem por problemas da parte física do robô.
+  As observações feitas pelo robô são ruidosas, o que impedem que informações precisas de direção e distância sejam obtidas, pois seus poucos sensores estão em constante movimento devido ao balanço necessário para manter o robô em movimento.
+
+  É comum encontrar trabalhos acadêmicos sobre localização de robôs autônomos para diversos domínios, mas são poucos os trabalhos que lidam com um domínio tão restrito quanto o deste trabalho.
+  Além disso, os trabalhos sobre este domínio apresentam algoritmos e resultados que não são reprodutíveis, devido às diferenças de \textit{hardware} e \textit{software} dos robôs utilizados.
+  Assim, este trabalho implementa um sistema de localização, baseado no algoritmo de localização de Monte-Carlo, para que robôs humanoides autônomos sejam capazes de estimar suas posições no domínio.
+  
+  O sistema implementado apresenta um método para estimar o quanto o robô se move ao longo do tempo e métodos diferentes para calcular quanto cada partícula representa a posição do robô real, além de métodos para se recuperar de erros de estimativa, para alterar a quantidade de partículas conforme o necessário e para estimar qual a melhor observação que o robô poderá fazer em instantes futuros.
+  Foram realizados experimentos simulados e em robôs reais que validam os métodos implementados e mostram que os métodos propostos são eficientes para resolver o problema de localização.
+  Por fim, trabalhos futuros incluem verificar o funcionamento do sistema em situação de jogo, além da expansão do sistema para um domínio genérico para observar o funcionamento dos métodos propostos e compará-las à outros métodos do estado da arte.
+
+  \noindent
+  \textbf{Palavras-chaves}: filtro de partículas. localização de monte-carlo. localização de robô. robô humanoide. futebol de robôs. relatório de atividades.
+\end{resumo}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\begin{siglas}
+  \item[ABNT] Associação Brasileira de Normas Técnicas
+  \item[abnTeX] ABsurdas Normas para TeX
+  \item[CNPq] Conselho Nacional de Desenvolvimento Científico e Tecnológico
+  \item[MCL] Localização de Monte-Carlo
+  \item[FEI] Centro Universitário da Fundação Educacional Inaciana Pe. Sabóia de Medeiros
+  \item[IAAA] Inteligência Artificial Aplicada à Automação
+\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+\begin{simbolos}
+  \item[$ \Gamma $] Letra grega Gama
+  \item[$ \Lambda $] Lambda
+  \item[$ \zeta $] Letra grega minúscula zeta
+  \item[$ \in $] Pertence
+\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\chapter{Introdução}
+
+\chapter{Atividades Desenvolvidas}
+
+\chapter{Resultados Obtidos}
+
+\chapter{Considerações Finais}
+
+% ----------------------------------------------------------
+% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
+% ----------------------------------------------------------
+
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{bib}
+\end{document}
